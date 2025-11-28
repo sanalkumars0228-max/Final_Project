@@ -1,0 +1,158 @@
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  animation: fadeInOut 3s ease forwards;
+}
+
+.alert-content {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  padding: 15px 25px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.alert-icon {
+  background: white;
+  color: #2e7d32;
+  font-weight: bold;
+  padding: 5px 9px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8ff;
+    margin: 0;
+}
+
+.container {
+  
+    padding: 30px 50px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+}
+
+.card {
+    margin-left: 100px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 600px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.card-1{
+    margin-left: 200px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 48%;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: #0a6df0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-success {
+    width: 100%;
+    padding: 12px;
+    background: #23a859;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.table-card {
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    text-align: left;
+    padding: 12px 0;
+    color: #444;
+}
+
+table td {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+.green {
+    background: #34c759;
+}
+
+.yellow {
+    background: #f5c542;
+    color: black;
+}
+
+.red {
+    background: #ff3b30;
+}
+
+.btn-warning {
+    background: #f5c542;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-danger {
+    background: #df0f0f;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.error-msg{
+    color: red;
+}
+h2{
+    text-align: center;
+}

@@ -1,0 +1,110 @@
+      <div *ngIf="showAlert" class="custom-alert">
+  <div class="alert-content">
+    <span class="alert-icon">✔</span>
+    <span class="alert-text">{{ alertMessage }}</span>
+  </div>
+</div>
+ 
+ <div class="card-2" *ngIf="addForm">
+                <h2>Patient Registration</h2>
+            <form [formGroup]="patientForm">
+                <div>
+                    <label><span style="color: red;">*</span>Name</label>
+                <input type="text" formControlName="name" class="input" placeholder="Enter your name">
+                <span class="error-msg" *ngIf="patientForm.controls.name?.invalid && patientForm.controls.name?.touched"> 
+                   <span *ngIf="patientForm.controls['name']?.errors?.['required']"> Name is required</span>
+                   <span *ngIf="patientForm.controls.name?.errors?.['minlength']">minimum 3 letters required</span>
+                </span>
+                </div><br>
+                <div>
+                    <label><span style="color: red;">*</span>Age</label>
+                <input type="number" formControlName="age" class="input" placeholder="Enter your name">
+                <span class="error-msg" *ngIf="patientForm.controls.age?.invalid && patientForm.controls.age?.touched"> 
+                   <span *ngIf="patientForm.controls['age']?.errors?.['required']"> age is required</span>
+                </span>
+                </div><br>
+                <div>
+                <label><span style="color: red;">*</span>Gender</label>
+                <select class="input" formControlName="gender" >
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <span class="error-msg" *ngIf="patientForm.controls.gender?.invalid && patientForm.controls.gender?.touched"> 
+                   <span *ngIf="patientForm.controls['gender']?.errors?.['required']"> age is required</span>
+                </span>
+                </div><br>
+
+                <button (click)="addPatient(patientForm.value)" class="btn-primary">Add</button>
+                </form>
+            </div>
+            
+            <!-- update Form -->
+          <div class="card-2" *ngIf="editForm">
+                <h2>Edit Registration</h2>
+            <form [formGroup]="patientForm">
+                <div>
+                    <label><span style="color: red;">*</span>Name</label>
+                <input type="text" formControlName="name" class="input" placeholder="Enter your name">
+                <span class="error-msg" *ngIf="patientForm.controls.name?.invalid && patientForm.controls.name?.touched"> 
+                   <span *ngIf="patientForm.controls['name']?.errors?.['required']"> Name is required</span>
+                   <span *ngIf="patientForm.controls.name?.errors?.['minlength']">minimum 3 letters required</span>
+                </span>
+                </div><br>
+                <div>
+                    <label><span style="color: red;">*</span>Age</label>
+                <input type="number" formControlName="age" class="input" placeholder="Enter your name">
+                <span class="error-msg" *ngIf="patientForm.controls.age?.invalid && patientForm.controls.age?.touched"> 
+                   <span *ngIf="patientForm.controls['age']?.errors?.['required']"> age is required</span>
+                </span>
+                </div><br>
+                <div>
+                <label><span style="color: red;">*</span>Gender</label>
+                <select class="input" formControlName="gender" >
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <span class="error-msg" *ngIf="patientForm.controls.gender?.invalid && patientForm.controls.gender?.touched"> 
+                   <span *ngIf="patientForm.controls['gender']?.errors?.['required']"> age is required</span>
+                </span>
+                </div><br>
+
+                <button (click)="updatePatient()" class="btn-primary">Edit</button>
+                </form>
+            </div>
+             <!-- Recent Patients -->
+              
+        <div class="card-3">
+            <h2>Recent Patients</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let patient of patients;let i=index">
+                        <td>{{patient._id}}</td>
+                        <td>{{patient.name}}</td>
+                        <td>{{patient.age}}</td>
+                        <td>{{patient.gender}}</td>
+                        <td><button (click)="setStatus(patient,'admitted')" class="badge yellow" *ngIf="patient.status === 'pending'">Pending</button>
+                            <button (click)="setStatus(patient,'discharged')" class="badge green" *ngIf="patient.status === 'admitted'">Admitted</button>
+                            <button (click)="setStatus(patient,'pending')"  class="badge red" *ngIf="patient.status === 'discharged'">Discharged</button>
+                        </td>
+                        <td><button (click)="editPatient(patient)" class="btn-warning ">Edit</button>
+                        <button (click)="deletePatient(patient._id)" class=" btn-danger ">Delete</button>
+                    </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>

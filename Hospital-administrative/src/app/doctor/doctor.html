@@ -1,0 +1,152 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+  <!-- <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            Doctor added successfully!
+        </div> -->
+        <div *ngIf="showAlert" class="custom-alert">
+  <div class="alert-content">
+    <span class="alert-icon">✔</span>
+    <span class="alert-text">{{ alertMessage }}</span>
+  </div>
+</div>
+
+<body>
+    <div class="container mt-4">
+    <div class="row g-4">
+        <!-- LEFT SIDE: New Appointment -->
+        <div class="col-sm-6" *ngIf="addForm">
+            <div class="card p-4 shadow-sm appointment-card">
+                <h2 class="mb-4">Add Doctor</h2>
+                <form [formGroup]="doctorForm">
+                    <div>
+                        <label><span style="color: red;">*</span>Name</label>
+                <input type="text" formControlName="name" placeholder="Name" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.name?.invalid && doctorForm.controls.name?.touched"> 
+                   <span *ngIf="doctorForm.controls['name']?.errors?.['required']"> username is required</span>
+                   <span *ngIf="doctorForm.controls.name?.errors?.['minlength']">minimum 3 letters required</span>
+                </span>
+                    </div><br>
+
+                    <div>
+                        <label><span style="color: red;">*</span>Age</label>
+                <input type="number" formControlName="age" placeholder="Age" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.age?.invalid && doctorForm.controls.age?.touched"> 
+                   <span *ngIf="doctorForm.controls['age']?.errors?.['required']"> age is required</span>
+                   <span *ngIf="doctorForm.controls.age?.errors?.['min']">minimum age 22 required</span>
+                   <span *ngIf="doctorForm.controls.age?.errors?.['max']">maximum age 65 required</span>
+                </span>
+                    </div><br>
+                
+                    <div>
+                          <label><span style="color: red;">*</span>Specialization</label>
+                <select class="form-select mb-4" formControlName="department">
+                    <option>Cardiology</option>
+                    <option>Neurology</option>
+                    <option>Orthopedics</option>
+                </select>
+                <span class="error-msg" *ngIf="doctorForm.controls.department?.invalid && doctorForm.controls.department?.touched"> 
+                   <span *ngIf="doctorForm.controls.department?.errors?.['required']"> Department is required</span>
+                </span>
+                    </div><br>
+                
+                    <div>
+                        <label><span style="color: red;">*</span>Phone</label>
+                <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.phone?.invalid && doctorForm.controls.phone?.touched"> 
+                   <span *ngIf="doctorForm.controls['phone']?.errors?.['required']"> number is required</span>
+                   <!-- <span *ngIf="doctorForm.controls.phone?.errors?.['min']">minimum 10 digit required</span> -->
+                </span>
+                    </div><br>
+              
+
+                <button (click)="addDoctor(doctorForm.value)" class="btn btn-primary w-100">Add</button>
+                </form>
+            </div>
+        </div>
+        
+      
+
+
+        <!-- update Form -->
+         <div class="col-sm-6" *ngIf="editForm">
+            <div class="card p-4 shadow-sm appointment-card">
+                <h2 class="mb-4">Edit Doctor</h2>
+                <form [formGroup]="doctorForm">
+                    <div>
+                        <label><span style="color: red;">*</span>Name</label>
+                <input type="text" formControlName="name" placeholder="Name" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.name?.invalid && doctorForm.controls.name?.touched"> 
+                   <span *ngIf="doctorForm.controls['name']?.errors?.['required']"> username is required</span>
+                   <span *ngIf="doctorForm.controls.name?.errors?.['minlength']">minimum 3 letters required</span>
+                </span>
+                    </div><br>
+
+                    <div>
+                        <label><span style="color: red;">*</span>Age</label>
+                <input type="number" formControlName="age" placeholder="Age" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.age?.invalid && doctorForm.controls.age?.touched"> 
+                   <span *ngIf="doctorForm.controls['age']?.errors?.['required']"> age is required</span>
+                   <span *ngIf="doctorForm.controls.age?.errors?.['min']">minimum age 22 required</span>
+                   <span *ngIf="doctorForm.controls.age?.errors?.['max']">maximum age 65 required</span>
+                </span>
+                    </div><br>
+                
+                    <div>
+                          <label><span style="color: red;">*</span>Specialization</label>
+                <select class="form-select mb-4" formControlName="department">
+                    <option>Cardiology</option>
+                    <option>Neurology</option>
+                    <option>Orthopedics</option>
+                </select>
+                <span class="error-msg" *ngIf="doctorForm.controls.department?.invalid && doctorForm.controls.department?.touched"> 
+                   <span *ngIf="doctorForm.controls['department']?.errors?.['required']"> Department is required</span>
+                </span>
+                    </div><br>
+
+                       <div>
+                        <label><span style="color: red;">*</span>Phone</label>
+                <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control mb-3">
+                <span class="error-msg" *ngIf="doctorForm.controls.phone?.invalid && doctorForm.controls.phone?.touched"> 
+                   <span *ngIf="doctorForm.controls['phone']?.errors?.['required']"> number is required</span>
+                   <!-- <span *ngIf="doctorForm.controls.phone?.errors?.['min']">minimum 10 digit required</span> -->
+                </span>
+                    </div><br>
+              
+
+                <button (click)="updateDoctor()" class="btn btn-primary w-100">Edit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: Multiple Cards -->
+        <div class="col-sm-6">
+
+            <h2 class="mb-3"> Doctors</h2>
+
+            <!-- CARD 1 -->
+            <div class="card p-3 mb-3 shadow-sm patient-card" *ngFor="let doctor of doctors">
+                <div class="d-flex justify-content-between">
+                    <div >
+                        <h5>{{doctor.name}}</h5>
+                        <h5>{{doctor.department}}</h5>
+                        <p class="mb-1"><strong>ID:</strong> {{doctor._id}}</p>
+                        <p class="mb-1"><strong>Age:</strong> {{doctor.age}}</p>
+                        <p class="mb-1"><strong>Phone:</strong> {{doctor.phone}}</p>
+                        <span class="badge bg-warning" (click)="editDoctor(doctor)">Edit</span>
+                        <span class="badge-1 bg-danger" (click)="deleteDoctor(doctor._id)">Delete</span>
+                    </div>
+                    <div>
+                        <!-- <button class="btn btn-primary btn-sm">Edit</button> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
